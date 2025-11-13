@@ -5,7 +5,7 @@ C'est quoi Internet (mais capté en profondeur) ?
 
 Socket en IPv4 ou IPv6 ? parce que c'est le client qui choisis, pas nous
 
-C'est poll ?
+C'est quoi poll ?
 
 
 
