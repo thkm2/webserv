@@ -24,6 +24,7 @@ struct Token {
 	size_t		column;
 };
 
+
 class Lexer {
 	public:
 		Lexer(const std::string &filename);
