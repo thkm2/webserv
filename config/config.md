@@ -20,7 +20,7 @@ l’exécution d’un CGI pour au moins une extension.
 TDL :
 [X] - Questions
 [X] - Logique error_pages
-[] - Faire des tests avec de fichier de config de merde
+[X] - Faire des tests avec de fichier de config de merde
 [] - meilleur organisation des fichiers
 [] - comprendre les élements du fichier de config
 [] - GPT comment travailler à deux sur un projet, bonne pratique
