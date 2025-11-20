@@ -13,17 +13,3 @@ activer/désactiver le directory listing (autoindex),
 les fichiers index par défaut pour un répertoire,
 l’upload (autorisé + dossier de stockage),
 l’exécution d’un CGI pour au moins une extension.
-
-
-
-
-TDL :
-[X] - Questions
-[X] - Logique error_pages
-[X] - Faire des tests avec de fichier de config de merde
-[] - meilleur organisation des fichiers
-[] - comprendre les élements du fichier de config
-[] - GPT comment travailler à deux sur un projet, bonne pratique
-[] - faire ma branche sur le git de nils
-[] - lui dire de mettre tout sur le main
-[] - mettre sur le main et l'informé
