@@ -40,7 +40,6 @@ void Lexer::tokenize(const std::string &filename) {
 	while (std::getline(in, lineStr)) {
 		++lineNum;
 		size_t i = 0;
-		size_t col = 1;
 
 		while (i < lineStr.size()) {
 			char c = lineStr[i];
@@ -48,7 +47,6 @@ void Lexer::tokenize(const std::string &filename) {
 			// Sauter les espaces
 			if (std::isspace(static_cast<unsigned char>(c))) {
 				++i;
-				++col;
 				continue;
 			}
 
@@ -59,41 +57,36 @@ void Lexer::tokenize(const std::string &filename) {
 
 			// Symboles simples
 			if (c == '{') {
-				_tokens.push_back(makeToken(TOKEN_LBRACE, "{", lineNum, col));
+				_tokens.push_back(makeToken(TOKEN_LBRACE, "{", lineNum, i + 1));
 				++i;
-				++col;
 				continue;
 			} else if (c == '}') {
-				_tokens.push_back(makeToken(TOKEN_RBRACE, "}", lineNum, col));
+				_tokens.push_back(makeToken(TOKEN_RBRACE, "}", lineNum, i + 1));
 				++i;
-				++col;
 				continue;
 			} else if (c == ';') {
-				_tokens.push_back(makeToken(TOKEN_SEMICOLON, ";", lineNum, col));
+				_tokens.push_back(makeToken(TOKEN_SEMICOLON, ";", lineNum, i + 1));
 				++i;
-				++col;
 				continue;
 			}
 
 			// Sinon : c'est un WORD
-			size_t startCol = col;
+			size_t startCol = i;
 			std::string word;
 
 			while (i < lineStr.size()) {
 				char d = lineStr[i];
 
-				if (std::isspace(static_cast<unsigned char>(d)) ||
+				if (std::isspace(static_cast<unsigned char>(d)) || // autre token
 					d == '{' || d == '}' || d == ';' || d == '#') {
 					break;
 				}
-
 				word += d;
 				++i;
-				++col;
 			}
 
 			if (!word.empty()) {
-				_tokens.push_back(makeToken(TOKEN_WORD, word, lineNum, startCol));
+				_tokens.push_back(makeToken(TOKEN_WORD, word, lineNum, startCol + 1));
 			}
 		}
 	}

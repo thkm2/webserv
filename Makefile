@@ -2,7 +2,7 @@ NAME = webserv
 
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = main.cpp config/lexer/Lexer.cpp
+SRC = main.cpp config/lexer/Lexer.cpp config/parsing/ConfigParser.cpp
 
 OBJ = ${SRC:.cpp=.o}
 

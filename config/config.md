@@ -13,3 +13,8 @@ activer/désactiver le directory listing (autoindex),
 les fichiers index par défaut pour un répertoire,
 l’upload (autorisé + dossier de stockage),
 l’exécution d’un CGI pour au moins une extension.
+
+
+Questions :
+c'est quoi std::string::size_type et std::string::npos ?
+quand y'a pas le host et que le port ça fais quoi ?

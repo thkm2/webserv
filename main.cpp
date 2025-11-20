@@ -1,16 +1,5 @@
-#include "config/lexer/Lexer.hpp"
+#include "config/parsing/ConfigParser.hpp"
 #include <iostream>
-
-static const char *tokenTypeToString(TokenType t) {
-    switch (t) {
-        case TOKEN_WORD:       return "WORD";
-        case TOKEN_LBRACE:     return "LBRACE";
-        case TOKEN_RBRACE:     return "RBRACE";
-        case TOKEN_SEMICOLON:  return "SEMICOLON";
-        case TOKEN_END:        return "END";
-    }
-    return "UNKNOWN";
-}
 
 int main(int ac, char **av) {
     if (ac != 2) {
@@ -19,23 +8,32 @@ int main(int ac, char **av) {
     }
 
     try {
-        Lexer lexer(av[1]);
+        ConfigParser parser;
 
-        while (!lexer.isEnd()) {
-            Token t = lexer.next();
-            std::cout << "Line " << t.line << ", Col " << t.column
-                      << " : " << tokenTypeToString(t.type);
+		const ServerConfig s = parser.parse(av[1]);
+		std::cout << "  listens:\n";
+		for (size_t j = 0; j < s.listens.size(); ++j) {
+			std::cout << "    " << s.listens[j].host
+						<< ":" << s.listens[j].port << "\n";
+		}
+		std::cout << "  root: " << s.root << "\n";
+		std::cout << "  index:";
+		for (size_t j = 0; j < s.indexFiles.size(); ++j) {
+			std::cout << " " << s.indexFiles[j];
+		}
+		std::cout << "\n";
+		std::cout << "  client_max_body_size: "
+					<< s.clientMaxBodySize << "\n";
+		std::cout << "  error_pages:\n";
+		for (std::map<int, std::string>::const_iterator it = s.errorPages.begin();
+				it != s.errorPages.end(); ++it) {
+			std::cout << "    " << it->first << " -> " << it->second << "\n";
+		}
 
-            if (t.type == TOKEN_WORD)
-                std::cout << " => \"" << t.value << "\"";
-
-            std::cout << std::endl;
-        }
     } catch (const std::exception &e) {
-        std::cerr << "Lexer error: " << e.what() << std::endl;
+        std::cerr << "Config error: " << e.what() << "\n";
         return 1;
     }
 
     return 0;
 }
-
