@@ -15,6 +15,15 @@ l’upload (autorisé + dossier de stockage),
 l’exécution d’un CGI pour au moins une extension.
 
 
-Questions :
-c'est quoi std::string::size_type et std::string::npos ?
-quand y'a pas le host et que le port ça fais quoi ?
+
+
+TDL :
+[X] - Questions
+[X] - Logique error_pages
+[] - Faire des tests avec de fichier de config de merde
+[] - meilleur organisation des fichiers
+[] - comprendre les élements du fichier de config
+[] - GPT comment travailler à deux sur un projet, bonne pratique
+[] - faire ma branche sur le git de nils
+[] - lui dire de mettre tout sur le main
+[] - mettre sur le main et l'informé

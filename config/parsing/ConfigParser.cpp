@@ -108,7 +108,6 @@ void ConfigParser::parseServerDirective(ServerConfig &server) {
         expect(TOKEN_SEMICOLON, "Missing ';' after client_max_body_size");
         advance();
     } else if (name == "error_page") {
-        // Là j'suis pas sur de la logique ! WARN !
         std::vector<int> codes;
         while (_cur.type == TOKEN_WORD) {
             const std::string &v = _cur.value;
